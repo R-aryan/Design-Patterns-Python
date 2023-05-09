@@ -39,4 +39,4 @@ if __name__ == "__main__":
     print(f"Journal entries: {j}")
 
     # saving to file
-    PersistenceManager.save_to_file(j, 'journal.txt')
+    PersistenceManager.save_to_file(j, 'msc_file/journal.txt')
