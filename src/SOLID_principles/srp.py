@@ -21,7 +21,22 @@ class Journal:
         return "\n".join(self.entries)
 
 
-j= Journal()
-j.add_entry("I am happy today")
-j.add_entry("I found a bug today")
-print(f"Journal entries: {j}")
+# separate class for handling the persistence
+class PersistenceManager:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def save_to_file(journal, filename):
+        file = open(filename, 'w')
+        file.write(str(journal))
+
+
+if __name__ == "__main__":
+    j = Journal()
+    j.add_entry("I am happy today")
+    j.add_entry("I found a bug today")
+    print(f"Journal entries: {j}")
+
+    # saving to file
+    PersistenceManager.save_to_file(j, 'journal.txt')
