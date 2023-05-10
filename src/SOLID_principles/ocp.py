@@ -107,3 +107,24 @@ for p in pf.filter_by_color(products, Color.GREEN):
     print(f' - {p.name} is green')
 
 print("----------------------------------------")
+print("Implementation with OCP approach..!!")
+print("----------------------------------------")
+
+bf = BetterFilter()
+
+print('Green products (new):')
+green = ColorSpecification(Color.GREEN)
+for p in bf.filter(products, green):
+    print(f' - {p.name} is green')
+
+print('Large products:')
+large = SizeSpecification(Size.LARGE)
+for p in bf.filter(products, large):
+    print(f' - {p.name} is large')
+
+
+print('Large blue items:')
+# large_blue = AndSpecification(large, ColorSpecification(Color.BLUE))
+large_blue = large & ColorSpecification(Color.BLUE)
+for p in bf.filter(products, large_blue):
+    print(f' - {p.name} is large and blue')
