@@ -6,27 +6,52 @@ Basically, the principle is similar to the single responsibility principle
 in the sense that classes should only implement methods that they actually use.
 """
 
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
-class Machine:
-    def print(self, document):
-        raise NotImplementedError()
+class NoTurbo(ABC):
+    @abstractmethod
+    def __init__(self, name):
+        """Please implement intialization of a car"""
 
-    def fax(self, document):
-        raise NotImplementedError()
-
-    def scan(self, document):
-        raise NotImplementedError()
+    @abstractmethod
+    def accelerate(self):
+        """Please implement accelerating of a car"""
 
 
-# ok if you need a multifunction device
-class MultiFunctionPrinter(Machine):
-    def print(self, document):
-        pass
+class WithTurbo(NoTurbo):
+    @abstractmethod
+    def turbo_accelerate(self):
+        """Please implement turboaccelerating of a car"""
 
-    def fax(self, document):
-        pass
 
-    def scan(self, document):
-        pass
+class RegularCar(NoTurbo):
+    def __init__(self, name):
+        self.name = name
+        self.speed = 0
+
+    def accelerate(self):
+        self.speed += 1
+        print("Car %s is accelerating" % self.name)
+
+
+class SportsCar(WithTurbo):
+    def __init__(self, name):
+        self.name = name
+        self.speed = 0
+
+    def accelerate(self):
+        self.speed += 1
+        print("Car %s is accelerating" % self.name)
+
+    def turbo_accelerate(self, turbo):
+        self.speed += turbo
+        print("Car %s is accelerating with turbo %d" % (self.name, turbo))
+
+
+if __name__ == '__main__':
+    car = RegularCar('BMW')
+    car.accelerate()
+
+    autoCar = SportsCar('Audi')
+    autoCar.turbo_accelerate(2)
