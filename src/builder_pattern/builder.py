@@ -1,5 +1,15 @@
 """
-class containing the sample implementation of builder pattern
+class containing the sample implementation of builder design pattern
+
+Builder Method is a Creation Design Pattern which aims to
+“Separate the construction of a complex object from its representation
+so that the same construction process can create different representations.”
+
+It allows you to construct complex objects step by step.
+Here using the same construction code, we can produce
+different types and representations of the object easily.
+It is basically designed to provide flexibility to the solutions
+to various object creation problems in object-oriented programming.
 """
 
 
