@@ -14,3 +14,21 @@ class Person:
         return f'Address: {self.street_address}, {self.postcode}, {self.city}\n' +\
             f'Employed at {self.company_name} as a {self.postcode} earning {self.annual_income}'
 
+
+class PersonBuilder:  # facade
+    def __init__(self, person=None):
+        if person is None:
+            self.person = Person()
+        else:
+            self.person = person
+
+    @property
+    def lives(self):
+        return PersonAddressBuilder(self.person)
+
+    @property
+    def works(self):
+        return PersonJobBuilder(self.person)
+
+    def build(self):
+        return self.person
