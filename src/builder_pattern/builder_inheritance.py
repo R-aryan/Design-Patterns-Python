@@ -18,3 +18,31 @@ class PersonBuilder:
 
     def build(self):
         return self.person
+
+
+class PersonInfoBuilder(PersonBuilder):
+    def called(self, name):
+        self.person.name = name
+        return self
+
+
+class PersonJobBuilder(PersonInfoBuilder):
+    def works_as_a(self, position):
+        self.person.position = position
+        return self
+
+
+class PersonBirthDateBuilder(PersonJobBuilder):
+    def born(self, date_of_birth):
+        self.person.date_of_birth = date_of_birth
+        return self
+
+
+if __name__ == '__main__':
+    pb = PersonBirthDateBuilder()
+    me = pb\
+        .called('Ritesh')\
+        .works_as_a('data eng')\
+        .born('1/1/1980')\
+        .build()  # this does NOT work in C#/C++/Java/...
+    print(me)
