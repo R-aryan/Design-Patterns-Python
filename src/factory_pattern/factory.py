@@ -33,3 +33,18 @@ class Point:
         # steps to add a new system
         # 1. augment CoordinateSystem
         # 2. change init method
+
+    @staticmethod
+    def new_cartesian_point(x, y):
+        return Point(x, y)
+
+    @staticmethod
+    def new_polar_point(rho, theta):
+        return Point(rho * sin(theta), rho * cos(theta))
+
+    class Factory:
+        @staticmethod
+        def new_cartesian_point(x, y):
+            return Point(x, y)
+
+    factory = Factory()
